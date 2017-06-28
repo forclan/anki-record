@@ -79,3 +79,44 @@ describe('anki connect api test', function () {
       })
   })
 });
+
+describe('get modelNames', () => {
+  it('getModelNames, result should be array', done => {
+    getModelNames()
+      .then(val => {
+        tryHandler(done, () => {
+          expect(val).to.be.a('array');
+        })
+      })
+  });
+
+  it('result in getModelNames should be string', done => {
+    getModelNames()
+      .then(val => {
+        tryHandler(done, () => {
+          val.map(modelName => {
+            expect(modelName).to.be.a('string');
+          })
+        });
+      })
+  })
+})
+
+describe('getModelFieldNames', () => {
+  let modelName = getModelNames();
+
+  it('result in getModelFieldNames should be array', done => {
+    modelName.then(names => {
+      getModelFieldNames({
+        params: {
+          modelName: names[0]
+        }
+      })
+        .then(val => {
+          tryHandler(done, () => {
+            expect(val).to.be.a('array');
+          })
+        })
+    })
+  })
+})
