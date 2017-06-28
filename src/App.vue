@@ -1,17 +1,24 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
-    <hello></hello>
+    <Window :text="text"></Window>
   </div>
 </template>
 
 <script>
-import Hello from './components/Hello'
+import Window from './components/Window';
 
 export default {
   name: 'app',
+  data () {
+    return {
+      text: '测试文字'
+    }
+  },
+  mounted () {
+    console.log('loaded')
+  },
   components: {
-    Hello
+    Window
   }
 }
 </script>
